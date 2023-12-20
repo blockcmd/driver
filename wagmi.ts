@@ -1,26 +1,30 @@
-import { configureChains, createConfig } from 'wagmi'
-import { goerli, mainnet } from 'wagmi/chains'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+// import { configureChains, createConfig } from 'wagmi'
+import { mainnet, klaytn, klaytnBaobab } from 'wagmi/chains'
+// import { InjectedConnector } from 'wagmi/connectors/injected'
+// import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { createConfig } from "wagmi";
+import { getDefaultConfig } from "connectkit";
 
-import { publicProvider } from 'wagmi/providers/public'
+// Choose which chains you'd like to show
+const chains = [mainnet, klaytn, klaytnBaobab];
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
-  [publicProvider()],
+// const { chains, publicClient, webSocketPublicClient } = configureChains(
+//   [mainnet, sepolia, goerli, bscTestnet, klaytn, klaytnBaobab],
+//   [publicProvider()],
+// )
+
+export const config = createConfig(
+  getDefaultConfig({
+    // Required API Keys
+    alchemyId: process.env.ALCHEMY_ID ?? '', // or infuraId
+    walletConnectProjectId: process.env.WALLETCONNECT_PROJECT_ID ?? '',
+    chains,
+    // Required
+    appName: "Your App Name",
+
+    // Optional
+    appDescription: "Your App Description",
+    appUrl: "https://family.co", // your app's url
+    appIcon: "https://family.co/logo.png", // your app's icon, no bigger than 1024x1024px (max. 1MB)
+  }),
 )
-
-export const config = createConfig({
-  autoConnect: true,
-  connectors: [
-    new InjectedConnector({
-      chains,
-      options: {
-        name: 'Injected',
-        shimDisconnect: true,
-      },
-    }),
-  ],
-  publicClient,
-  webSocketPublicClient,
-})
