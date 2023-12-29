@@ -1,12 +1,12 @@
 // import { configureChains, createConfig } from 'wagmi'
-import { mainnet, klaytn, klaytnBaobab } from 'wagmi/chains'
+import { mainnet, sepolia, klaytn, klaytnBaobab } from 'wagmi/chains'
 // import { InjectedConnector } from 'wagmi/connectors/injected'
 // import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { createConfig } from "wagmi";
 import { getDefaultConfig } from "connectkit";
 
 // Choose which chains you'd like to show
-const chains = [mainnet, klaytn, klaytnBaobab];
+const chains = [mainnet, sepolia, klaytn, klaytnBaobab];
 
 // const { chains, publicClient, webSocketPublicClient } = configureChains(
 //   [mainnet, sepolia, goerli, bscTestnet, klaytn, klaytnBaobab],
