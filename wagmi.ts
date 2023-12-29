@@ -8,11 +8,6 @@ import { getDefaultConfig } from "connectkit";
 // Choose which chains you'd like to show
 const chains = [mainnet, sepolia, klaytn, klaytnBaobab];
 
-// const { chains, publicClient, webSocketPublicClient } = configureChains(
-//   [mainnet, sepolia, goerli, bscTestnet, klaytn, klaytnBaobab],
-//   [publicProvider()],
-// )
-
 export const config = createConfig(
   getDefaultConfig({
     // Required API Keys

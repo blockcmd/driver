@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation"
 import { use, useEffect, useState } from "react"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 import { useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import abi from '@/abi/ZxStim.json'
 import { serialize, deserialize } from 'wagmi'
@@ -45,13 +45,6 @@ export default function FunctionAction() {
     },
   })
 
-  // usePrepareContractWrite hook to prepare a contract write object
-  // const { config, error } = usePrepareContractWrite({
-  //   address: '0x0614c46364aE6a98938d551bCa8d0CCA46e86576',
-  //   abi: abi,
-  //   functionName: functionIndex !== null ? functionObject[Number(functionIndex)].name : '',
-  //   args: args,
-  // })
   
   // useContractWrite hook to write data to the contract
   const { data: writeData, isLoading: writeLoading, isSuccess: writeSuccess, write } = useContractWrite({
@@ -75,6 +68,7 @@ export default function FunctionAction() {
 
   function clearData() {
     setResult("n/a")
+    setArgs([])
   }
 
   // this function allows arguments to be added to the args state
